@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
-{
-
+{ 
 
     /**
      * Display a listing of the resource.
@@ -18,8 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return ['message' => 'Success'];
-        //return User::latest()->paginate(5);
+        //return ['message' => 'Success'];
+        return User::latest()->paginate(5);
     }
 
     /**

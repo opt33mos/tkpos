@@ -23,7 +23,9 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Username</th>
-                <th>Actions</th>
+                <th>Role</th>
+                <th>Date Created</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -128,6 +130,7 @@
                     name="password"
                     autocomplete="off"
                     class="form-control"
+                    ref="password"
                     :class="{
                       'is-invalid': form.errors.has('password'),
                     }"
@@ -182,29 +185,30 @@ export default {
   },
   methods: {
     SaveUser() {
-      this.form
-        .post("api/user")
-        .then(() => {
-          //Fire.$emit("LoadTable");
-          $("#AddUser").modal("hide");
-          Toast.fire({
-            type: "success",
-            title: "User Successfully Save",
-          });
-          // this.$Progress.finish();
-        })
-        .catch(() => {
-          // this.$Progress.fail();
-        });
+      Toast.fire({
+        type: "success",
+        title: "Wla pa Function",
+      });
+      //   this.form
+      //     .post("api/user")
+      //     .then(() => {
+      //       //Fire.$emit("LoadTable");
+      //       $("#AddUser").modal("hide");
+      //       Toast.fire({
+      //         type: "success",
+      //         title: "User Successfully Save",
+      //       });
+      //       // this.$Progress.finish();
+      //     })
+      //     .catch(() => {
+      //       // this.$Progress.fail();
+      //     });
     },
     loadUsers() {
-      alert("a");
       axios.get("api/user").then(({ data }) => {
         this.users = data;
-        console.log(data);
       });
     },
   },
-  mounted() {},
 };
 </script>
