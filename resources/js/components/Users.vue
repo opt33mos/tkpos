@@ -1,26 +1,18 @@
 <template>
     <div class="container-fluid py-5">
-        <div class="col-md-12">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Users List</h3>
-                    <div class="card-tools">
-                        <div
-                            class="input-group"
-                        >
-                            <input
-                                type="text"
-                                name="table_search"
-                                class="form-control float-right"
-                                placeholder="Search"
-                            />
+                    <span class="card-title">User List</span>
 
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <div class="card-tools">
+                        <button
+                            class="btn btn-success float-right btn-sm"
+                            data-toggle="modal"
+                            data-target="#exampleModal"
+                        >
+                            <i class="fas fa-user-plus"></i> Add User
+                        </button>
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -29,20 +21,19 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
+                                <th>Username</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>John Doe</td>
-                                <td>john@gmail.com</td>
-                                <td>cashier</td>
+                                <td>johndoe123</td>
                                 <td>
                                     <a href="#">
-                                        <i class="fa fa-edit text-warning"></i>
-                                    </a> /
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    /
                                     <a href="#">
                                         <i class="fa fa-trash text-red"></i>
                                     </a>
@@ -54,12 +45,162 @@
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
+
+            <!-- Modal -->
+            <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                Modal title
+                            </h5>
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form @submit.prevent="submit">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input
+                                        v-model="form.name"
+                                        type="text"
+                                        name="name"
+                                        autocomplete="off"
+                                        class="form-control"
+                                        :class="{
+                                            'is-invalid': form.errors.has(
+                                                'name'
+                                            )
+                                        }"
+                                    />
+                                    <has-error
+                                        :form="form"
+                                        field="name"
+                                    ></has-error>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input
+                                        v-model="form.username"
+                                        type="text"
+                                        name="username"
+                                        autocomplete="off"
+                                        class="form-control"
+                                        :class="{
+                                            'is-invalid': form.errors.has(
+                                                'username'
+                                            )
+                                        }"
+                                    />
+                                    <has-error
+                                        :form="form"
+                                        field="username"
+                                    ></has-error>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Select Role</label>
+                                    <select
+                                        v-model="form.role"
+                                        name="role"
+                                        class="form-control"
+                                        :class="{
+                                            'is-invalid': form.errors.has(
+                                                'role'
+                                            )
+                                        }"
+                                    >
+                                     <option value="" disabled>--Select Role--</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="cashier">Cashier</option>
+                                    </select>
+                                    <has-error
+                                        :form="form"
+                                        field="role"
+                                    ></has-error>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input
+                                        v-model="form.password"
+                                        type="password"
+                                        name="password"
+                                        autocomplete="off"
+                                        class="form-control"
+                                        :class="{
+                                            'is-invalid': form.errors.has(
+                                                'password'
+                                            )
+                                        }"
+                                    />
+                                    <has-error
+                                        :form="form"
+                                        field="password"
+                                    ></has-error>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input
+                                        v-model="form.password"
+                                        type="password"
+                                        name="password"
+                                        autocomplete="off"
+                                        class="form-control"
+                                        :class="{
+                                            'is-invalid': form.errors.has(
+                                                'password'
+                                            )
+                                        }"
+                                    />
+                                    <has-error
+                                        :form="form"
+                                        field="password"
+                                    ></has-error>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                            >
+                                Save User
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            form: new Form({
+                name: "",
+                username: "",
+                role: "",
+                password: ""
+            })
+        };
+    },
     mounted() {}
 };
 </script>
