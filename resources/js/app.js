@@ -13,13 +13,18 @@ window.Swal = SweetAlert2;
 
 const toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: "top-end",
+    timerProgressBar: true,
     showConfirmButton: false,
     timer: 3000
 });
+
 window.Toast = toast;
 
 window.Form = Form;
+
+window.Fire = new Vue();
+
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
 
