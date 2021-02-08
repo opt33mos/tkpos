@@ -130,7 +130,6 @@
                     name="password"
                     autocomplete="off"
                     class="form-control"
-                    ref="password"
                     :class="{
                       'is-invalid': form.errors.has('password'),
                     }"
@@ -141,16 +140,16 @@
                 <div class="form-group">
                   <label>Confirm Password</label>
                   <input
-                    v-model="form.password"
+                    v-model="form.confirm_password"
                     type="password"
-                    name="password"
+                    name="confirm_password"
                     autocomplete="off"
                     class="form-control"
                     :class="{
-                      'is-invalid': form.errors.has('password'),
+                      'is-invalid': form.errors.has('confirm_password'),
                     }"
                   />
-                  <has-error :form="form" field="password"></has-error>
+                  <has-error :form="form" field="confirm_password"></has-error>
                 </div>
               </div>
               <div class="modal-footer">
@@ -180,29 +179,42 @@ export default {
         username: "",
         role: "",
         password: "",
+        confirm_password: "",
       }),
     };
   },
   methods: {
     SaveUser() {
-      Toast.fire({
-        type: "success",
-        title: "Wla pa Function",
-      });
-      //   this.form
-      //     .post("api/user")
-      //     .then(() => {
-      //       //Fire.$emit("LoadTable");
-      //       $("#AddUser").modal("hide");
-      //       Toast.fire({
-      //         type: "success",
-      //         title: "User Successfully Save",
-      //       });
-      //       // this.$Progress.finish();
-      //     })
-      //     .catch(() => {
-      //       // this.$Progress.fail();
-      //     });
+      console.log(this.form.password);
+            console.log(this.form.confirm_password);
+      this.$Progress.start();
+      if (this.form.confirm_password != "" && this.form.password != "") {
+        if (this.form.confirm_password == this.form.password) {
+          Toast.fire({
+            type: "success",
+            title: "User Successfully Save",
+          });
+          // this.form
+          //   .post("api/user")
+          //   .then(() => {
+          //     //Fire.$emit("LoadTable");
+          //     $("#AddUser").modal("hide");
+          //     Toast.fire({
+          //       type: "success",
+          //       title: "User Successfully Save",
+          //     });
+          //     // this.$Progress.finish();
+          //   })
+          //   .catch(() => {
+          //     // this.$Progress.fail();
+          //   });
+        } else {
+          Toast.fire({
+            type: "warning",
+            title: "Failed",
+          });
+        }
+      }
     },
     loadUsers() {
       axios.get("api/user").then(({ data }) => {

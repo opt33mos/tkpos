@@ -7,7 +7,7 @@ import moment from 'moment';
 import { Form, HasError, AlertError } from "vform";
 import SweetAlert2 from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
-
+import VueProgressBar from 'vue-progressbar';
 
 window.Swal = SweetAlert2;
 
@@ -25,6 +25,13 @@ Vue.component(AlertError.name, AlertError);
 
 Vue.use(VueRouter);
 
+Vue.use(VueProgressBar, {
+    color: 'rgb(143, 255, 199)',
+    failedColor: 'red',
+    height: '5px'
+})
+
+
 let routes = [
     {
         path: "/dashboard",
@@ -39,6 +46,8 @@ let routes = [
         component: require("./components/Users.vue").default
     }
 ];
+
+
 
 Vue.filter('capitalize', function (value) {
     if (!value) return '';
