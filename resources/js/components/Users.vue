@@ -186,7 +186,7 @@ export default {
   methods: {
     SaveUser() {
       console.log(this.form.password);
-            console.log(this.form.confirm_password);
+      console.log(this.form.confirm_password);
       this.$Progress.start();
       if (this.form.confirm_password != "" && this.form.password != "") {
         if (this.form.confirm_password == this.form.password) {
