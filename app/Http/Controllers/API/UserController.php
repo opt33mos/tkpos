@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
-{ 
+{
 
     /**
      * Display a listing of the resource.
@@ -17,8 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //return ['message' => 'Success'];
-        return User::latest()->paginate(5);
+        return User::latest()->paginate(10);
     }
 
     /**
@@ -33,26 +32,16 @@ class UserController extends Controller
             'name' => 'required|string|max:191',
             'username' => 'required|string|max:191|unique:users',
             'role' => 'required|string|max:191',
-            'password' => 'required|string|min:6'
+            'password' => 'required|string|min:6',
+            'confirm_password' => ['same:password']
         ]);
 
         return User::create([
             'name' => $request['name'],
             'username' => $request['username'],
-            'role' => 'admin',
+            'role' => $request['role'],
             'password' => Hash::make($request['password']),
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -75,6 +64,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
     }
 }

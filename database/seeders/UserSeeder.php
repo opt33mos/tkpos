@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'Juan Dela Cruz',
             'username' => 'admin super',
             'role' => 'admin',
-            'password' => bcrypt('12345678')
+            'password' => bcrypt('123456')
         ]);
     }
 }

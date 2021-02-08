@@ -5,8 +5,7 @@ import VueRouter from "vue-router";
 window.Vue = require('vue').default;
 import moment from 'moment';
 import { Form, HasError, AlertError } from "vform";
-import SweetAlert2 from 'sweetalert2/dist/sweetalert2.js';
-import 'sweetalert2/src/sweetalert2.scss';
+import SweetAlert2 from "sweetalert2";
 import VueProgressBar from 'vue-progressbar';
 
 window.Swal = SweetAlert2;
