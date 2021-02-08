@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
+ 
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +53,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $this->validate($request, [
+            'name' => 'required|string|max:191',
+            'username' => 'required|string|max:191|unique:users,username,' . $user->id,
+            'role' => 'required|string|max:191',
+            'password' => 'required|string|min:6',
+            'confirm_password' => ['same:password']
+        ]);
+
+        $user->update($request->all());
     }
 
     /**

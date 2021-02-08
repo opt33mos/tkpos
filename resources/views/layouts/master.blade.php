@@ -86,7 +86,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
               </a>
             </li>
-
+            <!-- @can('isAdmin') -->
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="fab fa-airbnb nav-icon"></i>
@@ -110,6 +110,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
               </ul>
             </li>
+            <!-- @endcan -->
 
             <li class="nav-item">
               <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
