@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Auth\User;
+use Laravel\Passport\Passport;
 
 class UserSeeder extends Seeder
 {
@@ -20,5 +21,6 @@ class UserSeeder extends Seeder
             'role' => 'admin',
             'password' => bcrypt('123456')
         ]);
+
     }
 }
