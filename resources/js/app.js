@@ -48,6 +48,14 @@ let routes = [
     {
         path: "/users",
         component: require("./components/Users.vue").default
+    },
+    {
+        path: "/size",
+        component: require("./components/Size.vue").default
+    },
+    {
+        path: "/product",
+        component: require("./components/Product.vue").default
     }
 ];
 

@@ -102,16 +102,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <p>Manage Users</p>
                   </router-link>
                 </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fab fa-airbnb nav-icon"></i>
-                    <p>Inactive Page</p>
-                  </a>
-                </li>
+
               </ul>
             </li>
             <!-- @endcan -->
-
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="fa fa-cog nav-icon"></i>
+                <p>
+                  File Maintenance
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                  <router-link to="/product" class="nav-link">
+                    <i class="fa fa-book nav-icon"></i>
+                    <p>Product</p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/size" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>Size</p>
+                  </router-link>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fa fa-sign-out-alt nav-icon"></i>
