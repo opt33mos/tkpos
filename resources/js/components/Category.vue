@@ -3,16 +3,16 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">Size</span>
+                    <span class="card-title">Categories</span>
 
                     <div class="card-tools">
                         <button
                             class="btn btn-success float-right btn-sm"
                             data-toggle="modal"
-                            data-target="#AddSize"
+                            data-target="#AddCategory"
                             @click="newEntry"
                         >
-                            Add New Size
+                            Add New Category
                         </button>
                     </div>
                 </div>
@@ -27,20 +27,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="size in sizes.data" :key="size.id">
-                                <td v-show="false">{{ size.id }}</td>
-                                <td>{{ size.name }}</td>
+                            <tr v-for="category in categories.data" :key="category.id">
+                                <td v-show="false">{{ category.id }}</td>
+                                <td>{{ category.name }}</td>
                                 <td>
                                     <a href="#">
                                         <i
                                             class="fa fa-edit"
-                                            @click="editSize(size)"
+                                            @click="editCategory(category)"
                                         ></i>
                                     </a>
                                     /
                                     <a
                                         href="#"
-                                        @click="deleteSize(size.id)"
+                                        @click="deleteCategory(category.id)"
                                     >
                                         <i class="fa fa-trash red"></i>
                                     </a>
@@ -56,7 +56,7 @@
             <!-- Modal -->
             <div
                 class="modal fade"
-                id="AddSize"
+                id="AddCategory"
                 tabindex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
@@ -69,14 +69,14 @@
                                 class="modal-title"
                                 id="exampleModalLabel"
                             >
-                                Update Size
+                                Update Category
                             </h5>
                             <h5
                                 v-show="!editmode"
                                 class="modal-title"
                                 id="exampleModalLabel"
                             >
-                                Add New Size
+                                Add New Category
                             </h5>
                             <button
                                 type="button"
@@ -89,7 +89,7 @@
                         </div>
                         <form
                             @submit.prevent="
-                                editmode ? updateSize() : SaveSize()
+                                editmode ? updateCategory() : SaveCategory()
                             "
                         >
                             <div class="modal-body">
@@ -119,14 +119,14 @@
                                     type="submit"
                                     class="btn btn-primary"
                                 >
-                                    Update Size
+                                    Update Category
                                 </button>
                                 <button
                                     v-show="!editmode"
                                     type="submit"
                                     class="btn btn-primary"
                                 >
-                                    Save Size
+                                    Save Category
                                 </button>
                             </div>
                         </form>
@@ -140,15 +140,15 @@
 <script>
 export default {
     created() {
-        this.loadSizes();
+        this.loadCategories();
         Fire.$on("LoadTable", () => {
-            this.loadSizes();
+            this.loadCategories();
         });
     },
     data() {
         return {
             editmode: false,
-            sizes: {},
+            categories: {},
             form: new Form({
                 id: "",
                 name: ""
@@ -158,25 +158,25 @@ export default {
     methods: {
         newEntry() {
             this.form.reset();
-            $("#AddSize").modal("show");
+            $("#AddCategory").modal("show");
             this.editmode = false;
         },
-        editSize(size) {
+        editCategory(category) {
             this.form.reset();
             this.editmode = true;
-            $("#AddSize").modal("show");
-            this.form.fill(size);
+            $("#AddCategory").modal("show");
+            this.form.fill(category);
         },
-        SaveSize() {
+        SaveCategory() {
             this.$Progress.start();
             this.form
-                .post("api/size")
+                .post("api/category")
                 .then(() => {
                     Fire.$emit("LoadTable");
-                    $("#AddSize").modal("hide");
+                    $("#AddCategory").modal("hide");
                     Toast.fire({
                         icon: "success",
-                        title: "New Size Successfully Save"
+                        title: "New Category Successfully Save"
                     });
                     this.$Progress.finish();
                 })
@@ -184,15 +184,15 @@ export default {
                     this.$Progress.fail();
                 });
         },
-        updateSize() {
+        updateCategory() {
             this.$Progress.start();
             this.form
-                .put("api/size/" + this.form.id)
+                .put("api/category/" + this.form.id)
                 .then(() => {
-                    $("#AddSize").modal("hide");
+                    $("#AddCategory").modal("hide");
                     Toast.fire({
                         icon: "success",
-                        title: "Size Successfully Updated"
+                        title: "Category Successfully Updated"
                     });
                     Fire.$emit("LoadTable");
                     this.$Progress.finish();
@@ -202,7 +202,7 @@ export default {
                     this.$Progress.fail();
                 });
         },
-        deleteSize(id) {
+        deleteCategory(id) {
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -215,12 +215,12 @@ export default {
                 if (result.isConfirmed) {
                     this.$Progress.start();
                     this.form
-                        .delete("api/size/" + id)
+                        .delete("api/category/" + id)
                         .then(() => {
                             Fire.$emit("LoadTable");
                             Toast.fire({
                                 icon: "info",
-                                title: "Size Successfully Deleted"
+                                title: "Category Successfully Deleted"
                             });
                             this.$Progress.finish();
                         })
@@ -230,9 +230,9 @@ export default {
                 }
             });
         },
-        loadSizes() {
-            axios.get("api/size").then(({ data }) => {
-                this.sizes = data;
+        loadCategories() {
+            axios.get("api/category").then(({ data }) => {
+                this.categories = data;
             });
         }
     }

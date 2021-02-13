@@ -49,14 +49,20 @@ let routes = [
         path: "/users",
         component: require("./components/Users.vue").default
     },
+
+    // File Maintenance
+    {
+        path: "/product",
+        component: require("./components/Product.vue").default
+    },
+    {
+        path: "/category",
+        component: require("./components/Category.vue").default
+    },
     {
         path: "/size",
         component: require("./components/Size.vue").default
     },
-    {
-        path: "/product",
-        component: require("./components/Product.vue").default
-    }
 ];
 
 

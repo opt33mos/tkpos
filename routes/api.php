@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\API\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,12 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResources([
-    'user' => 'App\Http\Controllers\API\UserController'
+    'user' => 'App\Http\Controllers\API\UserController',
+    'flavor' => 'App\Http\Controllers\API\FlavorController',
+    'category' => 'App\Http\Controllers\API\CategoryController',
+    'size' => 'App\Http\Controllers\API\SizeController',
+    'product' => 'App\Http\Controllers\API\ProductController',
 ]);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function () {
+   Route::get('/user', ['App\Http\Controllers\API\UserController', 'index']);
+   Route::get('/flavor', ['App\Http\Controllers\API\FlavorController', 'index']);
+   Route::get('/category', ['App\Http\Controllers\API\CategoryController', 'index']);
+   Route::get('/size', ['App\Http\Controllers\API\SizeController', 'index']);
+   Route::get('/product', ['App\Http\Controllers\API\ProductController', 'index']);
 });
 
-Route::get('/user', [UserController::class, 'index']);
+
 

@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Tk Milk Tea | POS</title>
+  <title>TK Milk Tea | POS</title>
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -98,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="nav nav-treeview" style="display: none;">
                 <li class="nav-item">
                   <router-link to="/users" class="nav-link">
-                    <i class="fab fa-airbnb nav-icon"></i>
+                    <i class="far fa-dot-circle nav-icon"></i>
                     <p>Manage Users</p>
                   </router-link>
                 </li>
@@ -108,7 +108,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- @endcan -->
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
-                <i class="fa fa-cog nav-icon"></i>
+                <i class="fa fa-cogs nav-icon"></i>
                 <p>
                   File Maintenance
                   <i class="right fas fa-angle-left"></i>
@@ -117,13 +117,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="nav nav-treeview" style="display: none;">
                 <li class="nav-item">
                   <router-link to="/product" class="nav-link">
-                    <i class="fa fa-book nav-icon"></i>
+                    <i class="far fa-dot-circle nav-icon"></i>
                     <p>Product</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
+                  <router-link to="/category" class="nav-link">
+                    <i class="nav-icon far fa-dot-circle"></i>
+                    <p>Category</p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
                   <router-link to="/size" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon far fa-dot-circle"></i>
                     <p>Size</p>
                   </router-link>
                 </li>
