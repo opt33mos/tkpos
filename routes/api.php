@@ -15,18 +15,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResources([
     'user' => 'App\Http\Controllers\API\UserController',
-    'flavor' => 'App\Http\Controllers\API\FlavorController',
     'category' => 'App\Http\Controllers\API\CategoryController',
     'size' => 'App\Http\Controllers\API\SizeController',
     'product' => 'App\Http\Controllers\API\ProductController',
+    'transaction' => 'App\Http\Controllers\API\TransactionController',
 ]);
 
 Route::middleware('auth:api')->group(function () {
    Route::get('/user', ['App\Http\Controllers\API\UserController', 'index']);
-   Route::get('/flavor', ['App\Http\Controllers\API\FlavorController', 'index']);
    Route::get('/category', ['App\Http\Controllers\API\CategoryController', 'index']);
    Route::get('/size', ['App\Http\Controllers\API\SizeController', 'index']);
    Route::get('/product', ['App\Http\Controllers\API\ProductController', 'index']);
+   Route::get('/transaction', ['App\Http\Controllers\API\TransactionController', 'index']);
 });
 
 
