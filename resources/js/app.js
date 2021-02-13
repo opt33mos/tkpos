@@ -26,7 +26,7 @@ window.Fire = new Vue();
 
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
-
+Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.use(VueRouter);
 
 Vue.use(VueProgressBar, {
@@ -62,6 +62,10 @@ let routes = [
     {
         path: "/size",
         component: require("./components/Size.vue").default
+    },
+    {
+        path: "/transaction",
+        component: require("./components/Transaction.vue").default
     },
 ];
 

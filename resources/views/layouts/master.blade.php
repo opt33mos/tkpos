@@ -70,10 +70,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
 
             <li class="nav-item">
-              <router-link to="/example" class="nav-link">
+              <router-link to="/transaction" class="nav-link">
                 <i class="fab fa-airbnb nav-icon"></i>
                 <p>
-                  Menu 1
+                  Transaction
                 </p>
               </router-link>
             </li>
